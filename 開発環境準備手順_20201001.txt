@@ -1,0 +1,45 @@
+Docker 開発環境構築
+
+１．Gitをインストールする。
+　　解説
+　　https://qiita.com/manabu-watanabe/items/ecf1b434baf305adaa00
+
+２．Dockerをインストールする。
+　　https://www.docker.com/
+
+　　解説
+　　https://qiita.com/kariyaitaru/items/83fe1c8c9ed4f8732a63
+
+３．Visual Studio Codeをインストールする。
+　　解説
+　　https://www.kkaneko.jp/tools/win/vscode.html
+
+４．Visual Studio Codeにプラグインをインストールする。
+　　Japanese Language Pack for VS Code
+　　　日本語表示パック
+　　PHP Extension Pack
+　　　PHPの基本拡張パック
+　　phpcs
+　　　PHP CodeSniffer。コード規約のチェックを行う。
+　　php cs fixer
+　　　コード規約に合わせた修正やインデントなどの修正を行う。
+　　PHP Mess Detector
+　　　PHPの静的解析ツール。
+　　Remote-Container
+　　　Microsoft純正のDockerコンテナ用拡張ツール
+
+　　ほかはお好みで。
+
+５．docker-lamp_vscode_20200604.zip　を解凍し、作業フォルダに配置する。
+　　 ¥¥192.168.1.200¥□事業部_Ict¥□事業部_ICT_一般¥【N】ICT_開発ツール等¥統一開発ツール_20191001¥Docker¥
+
+６．解凍したフォルダ「docker-lamp」へ移動し、appフォルダを削除する。
+　　（中には隠しファイルがあるので注意）
+
+７．Visual Studio Code で docker-lampのフォルダを開く
+
+８．左下の緑のボタンを押すと、Visual Studio Codeの上部メニューの
+　　「Reopen remotely」を選択すると、Dockerのビルドが開始し、プロジェクトの
+　　修正が可能となる。
+
+９．localhost:8000にアクセスすると、phpMyAdminが表示される。

@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./redis/data:/data"
+  mysql:
+    build: ./mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wpdb
+    volumes:
+      - ./mysql/db:/var/lib/mysql:cached
+      - ./shared/logs/mysql:/var/log/mysql
+    ports:
+      - '3306:3306'
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    links:
+      - mysql
+    ports:
+      - '8000:80'
+    volumes:
+      - './phpmyadmin/sessions:/sessions'
+      - './phpmyadmin/upload.ini:/usr/local/etc/php/conf.d/uploads.ini'
+  php:
+    build: ./php
+    volumes:
+      - ./app:/var/www/html:cached
+      - ./shared/logs/apache2:/var/log/apache2
+      - ./shared/logs/xdebug:/var/log/xdebug
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    ports:
+      - '8080:80'
+volumes:
+  db:
